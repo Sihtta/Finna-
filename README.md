@@ -8,7 +8,7 @@ Le projet est réalisé avec **HTML**, **CSS**, et **PHP** pour la logique côt�
 
 ## **Fonctionnalités principales ⚙️**
 
-- **Système d'authentification 💸** : Système d'authentification sécrurisé.
+- **Système d'authentification 💻** : Système d'authentification sécrurisé.
 - **Ajout des revenus et des dépenses 💸** : L'utilisateur peut entrer ses revenus et ses dépenses, avec des catégories définies pour chaque entrée.
 - **Suivi des finances 📈** : Visualisation des finances sous forme de liste ou de graphique pour un suivi facile.
 - **Interface responsive 📱💻** : L'application est conçue pour être utilisée sur **desktop** et **mobile**, offrant une expérience fluide sur tous les appareils.
