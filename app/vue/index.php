@@ -89,6 +89,8 @@ try {
                 <?php else: ?>
                     <p>Vous n'avez aucun compte bancaire enregistré.</p>
                 <?php endif; ?>
+                <a href="../controleur/list_comptes.php" class="btn btn-more" style="margin-top: 20px;">Voir mes comptes</a>
+                <a href="../controleur/ajouter_compte.php" class="btn btn-add" style="margin-top: 20px;">Ajouter un compte</a>
             </section>
 
             <section>

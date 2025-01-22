@@ -106,9 +106,9 @@ try {
                                 <?php endforeach; ?>
                             </tbody>
                         </table>
-                        <button type="submit" class="btn btn-delete">Supprimer la transaction</button>
-                        <button type="submit" formaction="../controleur/modifier_transaction.php" class="btn btn-edit">Modifier la transaction</button>
                         <button type="submit" formaction="../controleur/ajouter_transaction.php" class="btn btn-add">Ajouter une transaction</button>
+                        <button type="submit" formaction="../controleur/modifier_transaction.php" class="btn btn-edit">Modifier la transaction</button>
+                        <button type="submit" class="btn btn-delete">Supprimer la transaction</button>
                     </form>
 
                 <?php else: ?>

@@ -323,3 +323,58 @@ button:hover {
     text-align: center;
 }
 
+/*Comptes */
+/* Liste des comptes */
+#compte-list,
+#delete-compte-form {
+    display: none; 
+}
+
+#compte-list select,
+#delete-compte-form select{
+    background-color: #1b1b1b;
+    color: #00C8A4;
+    border: 1px solid #00C8A4;
+    padding: 10px;
+    margin: 10px 0;
+    font-size: 1em;
+    border-radius: 8px;
+}
+
+#delete-compte-form select{
+    color: #E74C3C;
+    border: 1px solid #C0392B;
+}
+
+#compte-list button,
+#delete-compte-form button {
+    background-color: #00C8A4;
+    color: #1B1B1B;
+    padding: 10px 10px;
+    border-radius: 8px;
+    font-size: 0.9em;
+    transition: transform 0.2s, box-shadow 0.3s;
+}
+
+#delete-compte-form button {
+    background-color: #E74C3C;
+}
+
+#compte-list button:hover {
+    background-color: #00997E; 
+    transform: translateY(-3px);
+}
+
+#delete-compte-form button:hover {
+    background-color: #E74C3C; 
+    transform: translateY(-3px);
+}
+
+.message.error {
+    color: red;
+    font-weight: bold;
+}
+
+.action-buttons{
+    margin-top: 20px;
+}
