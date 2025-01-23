@@ -3,7 +3,6 @@ include '../modele/connexion.php';
 
 session_start();
 
-// Récupération des identifiants
 $identifiants = [
     'login' => isset($_POST['login']) ? $_POST['login'] : '',
     'password' => isset($_POST['password']) ? $_POST['password'] : ''
@@ -15,7 +14,6 @@ function existeCli(array $identifiants): bool
     try {
         $connexion = new Connexion();
 
-        // Récupération du mot de passe hashé à partir de la table client
         $req = "SELECT mot_de_passe FROM client WHERE login = :login";
         $resultat = $connexion->execSQL($req, ['login' => $identifiants['login']]);
 
@@ -23,10 +21,8 @@ function existeCli(array $identifiants): bool
             return false;
         }
 
-        // On prend le mot de passe stocké
         $stored_password = $resultat[0]['mot_de_passe'];
 
-        // Vérification du mot de passe avec le hash
         if (password_verify($identifiants['password'], $stored_password)) {
             return true;
         } else {
@@ -46,7 +42,6 @@ function estAdmin($login): bool
         $req = "SELECT role FROM client WHERE login = :login";
         $resultat = $connexion->execSQL($req, ['login' => $login]);
 
-        // Vérifie si le rôle est "admin"
         return !empty($resultat) && $resultat[0]['role'] === 'admin';
     } catch (Exception $e) {
         die('Erreur lors de la vérification du rôle du client : ' . $e->getMessage());
@@ -63,6 +58,6 @@ if (existeCli($identifiants)) {
     }
     exit();
 } else {
-    header("Location: ../vue/login.view.php?error=1");
+    header("Location: ../vue/index.php?error=1");
     exit();
 }

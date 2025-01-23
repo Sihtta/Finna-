@@ -86,7 +86,7 @@
         </form>
 
 
-        <a href="../vue/login.view.php">Déjà un compte ? Connectez-vous ici.</a>
+        <a href="../vue/index.php">Déjà un compte ? Connectez-vous ici.</a>
     </div>
 </body>
 

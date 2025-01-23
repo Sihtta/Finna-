@@ -2,7 +2,7 @@
 session_start();
 
 if (!isset($_SESSION['login'])) {
-    header("Location: ../../compte/controleur/login.view.php?error=1");
+    header("Location: ../../compte/controleur/index.php?error=1");
     exit();
 }
 

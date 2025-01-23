@@ -58,7 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'mot_de_passe' => $hashed_password
     ]);
 
-    header("Location: ../vue/login.view.php?success=1");
+    header("Location: ../vue/index.php?success=1");
     exit();
 } else {
     $connexion = new Connexion();

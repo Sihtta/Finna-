@@ -2,26 +2,42 @@ body {
     font-family: 'Merriweather', serif;
     background-color: #1B1B1B;
     color: #D3D3D3;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
     margin: 0;
     padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
     min-height: 100vh;
 }
 
-.login-form, .factures-container, .signup-form {
-    background-color: #2A2A2A;
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+.main-header,
+.login-form,
+.example-credentials {
     width: 90%;
     max-width: 600px;
-    margin: auto;
-    margin-top: 50px;
+    margin: 0 auto;
+    box-sizing: border-box;
 }
 
-.login-form h2, .factures-container h2, .factures-container h3, .signup-form h2 {
+.main-header {
+    text-align: center;
+    padding: 20px;
+    border-radius: 15px;
+    background: linear-gradient(135deg, #00C8A4, #007F74);
+    color: #1B1B1B;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.example-credentials {
+    background-color: #2A2A2A;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+.login-form h2, .example-credentials h2 {
     color: #E5E5E5;
     text-align: center;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
@@ -35,7 +51,7 @@ body {
     color: #9A9A9A;
 }
 
-.login-form input, .signup-form input, .signup-form select {
+.login-form input {
     margin-bottom: 15px;
     width: 100%;
     padding: 10px;
@@ -48,13 +64,13 @@ body {
     transition: box-shadow 0.3s ease, border-color 0.3s;
 }
 
-.login-form input:focus, .signup-form input:focus, .signup-form select:focus {
+.login-form input:focus {
     outline: none;
     border-color: #00C8A4;
     box-shadow: 0 0 5px rgba(0, 200, 164, 0.5);
 }
 
-.login-form button, .signup-form button {
+.login-form button {
     width: 100%;
     padding: 15px;
     background-color: #00C8A4;
@@ -68,16 +84,10 @@ body {
     transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
 }
 
-.login-form button:hover, .signup-form button:hover {
+.login-form button:hover {
     background-color: #00997E;
     transform: translateY(-3px);
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
-}
-
-.login-form .error, .signup-form .error {
-    color: red;
-    text-align: center;
-    margin-bottom: 15px;
 }
 
 a {
@@ -86,21 +96,8 @@ a {
     cursor: pointer;
 }
 
-.signup-form form {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 15px;
-}
-
-.signup-form form button {
-    grid-column: span 2; 
-}
-
-.signup-form .client-id {
-    grid-column: span 2;
-    background-color: #333;
-    color: #888;
-    pointer-events: none;
+a:hover {
+    color: #00997E;
 }
 
 .login-form a {
@@ -110,15 +107,62 @@ a {
     margin-top: 10px;
 }
 
-.signup-form a {
-    display: block;
+
+/* Conteneur de contenu */
+.container {
+    position: relative;
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #313131; 
+    border-radius: 15px;
+    width: 90%;
+    max-width: 1000px;
+    margin-top: 30px;
+    margin-bottom: 30px;
     text-align: center;
-    color: #00C8A4;
-    margin-top: 10px;
+    overflow: hidden;
+    z-index: 1;
+
 }
 
-button + a {
-    margin-top: 10px;
-}
-
-
+.content {
+    position: relative;
+    z-index: 2; 
+    border-radius: 20px; 
+  }
+  
+  .container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 20px; 
+    background: 
+      linear-gradient(90deg, #00997E, rgba(0, 153, 126, 0.6)) 0% 0% / 100% 2px,
+      linear-gradient(180deg, #00997E, rgba(0, 153, 126, 0.6)) 100% 0% / 2px 100%,
+      linear-gradient(270deg, #00997E, rgba(0, 153, 126, 0.6)) 100% 100% / 100% 2px,
+      linear-gradient(360deg, #00997E, rgba(0, 153, 126, 0.6)) 0% 100% / 2px 100%;
+    background-repeat: no-repeat;
+    animation: animate-border 8s linear infinite;
+    z-index: 1; 
+  }
+  
+  @keyframes animate-border {
+    0% {
+      background-size: 0% 2px, 2px 0%, 0% 2px, 2px 0%;
+    }
+    25% {
+      background-size: 100% 2px, 2px 0%, 0% 2px, 2px 0%;
+    }
+    50% {
+      background-size: 100% 2px, 2px 100%, 0% 2px, 2px 0%;
+    }
+    75% {
+      background-size: 100% 2px, 2px 100%, 100% 2px, 2px 0%;
+    }
+    100% {
+      background-size: 100% 2px, 2px 100%, 100% 2px, 2px 100%;
+    }
+  }

@@ -2,7 +2,7 @@
 session_start();
 
 if (!isset($_SESSION['login'])) {
-    header("Location: ../../compte/vue/login.view.php?error=1");
+    header("Location: ../../compte/vue/index.php?error=1");
     exit();
 }
 

@@ -2,7 +2,7 @@
 session_start();
 
 if (!isset($_SESSION['login'])) {
-    header("Location: ../../compte/vue/login.view.php?error=1");
+    header("Location: ../../compte/vue/index.php?error=1");
     exit();
 }
 
@@ -64,7 +64,7 @@ try {
     <header class="main-header">
         <h1>Bienvenue, <?= htmlspecialchars($login) ?> !</h1>
         <div class="menu">
-            <a href="../../projets.php" class="btn">Accueil</a>
+            <a href="https://matthis-pourcelot.com/" class="btn">Portfolio</a>
             <a href="../../compte/controleur/logout.php" class="btn logout-btn">Déconnexion</a>
         </div>
     </header>
