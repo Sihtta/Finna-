@@ -1,15 +1,54 @@
+/* Base générale */
 body {
     font-family: 'Merriweather', serif;
     background-color: #1B1B1B;
     color: #D3D3D3;
-    margin: 0;
-    padding: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 30px;
-    min-height: 100vh;
 }
+
+/* Header */
+.main-header {
+    width: 100%;
+    top: 0;
+}
+
+.main-header .header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo-img {
+    width: 40px;
+    margin-right: 10px;
+}
+
+.logo-text {
+    font-size: 1.6em;
+    font-weight: bold;
+    color: #00C8A4;
+}
+
+.nav-links a {
+    color: #D3D3D3;
+    text-decoration: none;
+    font-weight: bold;
+    margin-left: 30px;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: #00C8A4;
+}
+
 
 .main-header,
 .login-form,
@@ -28,24 +67,8 @@ body {
     margin: auto;
 }
 
-.main-header {
-    text-align: center;
-    padding: 20px;
-    border-radius: 15px;
-    background: linear-gradient(135deg, #00C8A4, #007F74);
-    color: #1B1B1B;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-}
 
-.example-credentials {
-    background-color: #2A2A2A;
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-    text-align: center;
-}
-
-.login-form h2, .example-credentials h2, .signup-form h2 {
+.login-form h2, .signup-form h2 {
     color: #E5E5E5;
     text-align: center;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
@@ -138,8 +161,23 @@ a:hover {
     margin-top: 10px;
 }
 
-/* Conteneur de contenu */
+/* Section principale */
 .container {
+    position: relative;
+    margin-top: 60px;
+    margin-bottom: 30px;
+    text-align: center;
+    overflow: hidden;
+    width: 100%;
+}
+
+.content {
+    position: relative;
+    z-index: 2;
+    border-radius: 20px;
+}
+
+.container2 {
     position: relative;
     margin-top: 20px;
     padding: 20px;
@@ -155,13 +193,13 @@ a:hover {
 
 }
 
-.content {
+.content2 {
     position: relative;
     z-index: 2; 
     border-radius: 20px; 
   }
   
-  .container::before {
+  .container2::before {
     content: '';
     position: absolute;
     top: 0;
@@ -198,3 +236,89 @@ a:hover {
   }
 
 
+/* Cartes */
+.cards {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    min-height: 300px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+.card {
+    background-color: #2A2A2A;
+    border-radius: 15px;
+    padding: 30px 20px;
+    width: 300px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 200, 164, 0.5);
+}
+
+.skill-icon {
+    font-size: 2rem;
+    color: #00997E;
+    margin-bottom: 1rem;
+    fill: #00997E;
+    display: block;
+}
+
+.card h3 {
+    color: #00C8A4;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.card p {
+    color: #B3B3B3;
+    line-height: 1.5;
+}
+
+/* Section Identifiants d'exemple */
+.example-credentials {
+    background-color: #2A2A2A;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+.example-credentials h2 {
+    color: #E5E5E5;
+    text-align: center;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    margin-bottom: 20px;
+}
+
+.example-credentials ul {
+    list-style: none;
+    padding: 0;
+}
+
+.example-credentials li {
+    margin: 10px 0;
+    color: #D3D3D3;
+}
+
+.highlight {
+    color: #00C8A4;
+    font-weight: bold;
+}
+
+/* Liens */
+a {
+    color: #00C8A4;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+a:hover {
+    color: #00997E;
+}

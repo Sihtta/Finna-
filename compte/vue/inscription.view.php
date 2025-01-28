@@ -9,9 +9,22 @@
 </head>
 
 <body>
+    <header class="main-header">
+        <div class="header-content">
+            <div class="logo">
+                <img src="../../assets/images/favicon.png" alt="Logo Finna" class="logo-img">
+                <span class="logo-text">Finna</span>
+            </div>
+            <nav class="nav-links">
+                <a href="index.php">Accueil</a>
+                <a href="inscription.view.php">S'inscrire</a>
+            </nav>
+        </div>
+    </header>
+
     <div class="signup-form">
-        <div class="container">
-            <div class="content">
+        <div class="container2">
+            <div class="content2">
 
                 <h2>Inscription Client</h2>
 
@@ -89,7 +102,7 @@
                 </form>
 
 
-                <a href="../vue/index.php">Déjà un compte ? Connectez-vous ici.</a>
+                <a href="../vue/login.view.php">Déjà un compte ? Connectez-vous ici.</a>
             </div>
         </div>
     </div>
