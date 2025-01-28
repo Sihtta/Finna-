@@ -46,4 +46,21 @@ class Connexion
     {
         return $this->db;
     }
+
+    public function mettreAJourSolde(int $id_compte): void
+    {
+        try {
+            $reqUpdateSolde = "
+            UPDATE compte_bancaire
+            SET solde = (
+                SELECT IFNULL(SUM(montant), 0)
+                FROM transactions
+                WHERE id_compte = :id_compte
+            )
+            WHERE id_compte = :id_compte";
+            $this->execSQL($reqUpdateSolde, ['id_compte' => $id_compte]);
+        } catch (Exception $e) {
+            die("Erreur lors de la mise à jour du solde : " . $e->getMessage());
+        }
+    }
 }
