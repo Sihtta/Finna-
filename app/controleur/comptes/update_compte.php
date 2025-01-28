@@ -2,12 +2,12 @@
 session_start();
 
 if (!isset($_SESSION['login'])) {
-    header("Location: ../../compte/controleur/index.php?error=1");
+    header("Location: ../../../compte/controleur/index.php?error=1");
     exit();
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id_compte'])) {
-    include '../modele/connexion.php';
+    include '../../modele/connexion.php';
 
     try {
         $connexion = new Connexion();
@@ -26,13 +26,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id_compte'])) {
         ]);
 
         // Redirection vers la liste des comptes avec un message de succès
-        header("Location: ../controleur/list_comptes.php?success=1");
+        header("Location: ../../controleur/comptes/list_comptes.php?success=1");
         exit();
     } catch (Exception $e) {
         die("Erreur lors de la mise à jour du compte : " . $e->getMessage());
     }
 } else {
     // Si la requête n'est pas valide, on redirige
-    header("Location: ../controleur/list_comptes.php?error=Erreur lors de la mise à jour");
+    header("Location: ../../controleur/comptes/list_comptes.php?error=Erreur lors de la mise à jour");
     exit();
 }

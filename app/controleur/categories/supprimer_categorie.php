@@ -2,11 +2,11 @@
 session_start();
 
 if (!isset($_SESSION['login'])) {
-    header("Location: ../../compte/vue/index.php?error=1");
+    header("Location: ../../../compte/vue/index.php?error=1");
     exit();
 }
 
-include '../modele/connexion.php';
+include '../../modele/connexion.php';
 
 try {
     $connexion = new Connexion();
@@ -40,9 +40,9 @@ try {
     $reqDeleteCategorie = "DELETE FROM categories WHERE id = :id";
     $connexion->execSQL($reqDeleteCategorie, ['id' => $idCategorie]);
 
-    header("Location: ../controleur/list_categories.php?success=1");
+    header("Location: ../../controleur/categories/list_categories.php?success=1");
     exit();
 } catch (Exception $e) {
-    header("Location: ../controleur/list_categories.php?error=" . urlencode($e->getMessage()));
+    header("Location: ../../controleur/categories/list_categories.php?error=" . urlencode($e->getMessage()));
     exit();
 }

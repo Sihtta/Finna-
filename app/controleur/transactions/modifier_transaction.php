@@ -2,19 +2,19 @@
 session_start();
 
 if (!isset($_SESSION['login'])) {
-    header("Location: ../../compte/controleur/index.php?error=1");
+    header("Location: ../../../compte/controleur/index.php?error=1");
     exit();
 }
 
 if (!isset($_POST['transaction_id']) || !is_numeric($_POST['transaction_id'])) {
-    header("Location: ../controleur/list_transactions.php?error=Aucune transaction sélectionnée.");
+    header("Location: ../../controleur/transactions/list_transactions.php?error=Aucune transaction sélectionnée.");
     exit();
 }
 
 $transaction_id = $_POST['transaction_id'];
 $login = $_SESSION['login'];
 
-include '../modele/connexion.php';
+include '../../modele/connexion.php';
 
 try {
     $connexion = new Connexion();
@@ -48,8 +48,8 @@ try {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modifier une transaction</title>
-    <link rel="stylesheet" href="../../style/finances.css">
-    <link rel="icon" type="image/png" href="../../assets/images/favicon.png">
+    <link rel="stylesheet" href="../../../style/finances.css">
+    <link rel="icon" type="image/png" href="../../../assets/images/favicon.png">
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             ajusterMontant();
@@ -93,14 +93,14 @@ try {
     <header class="main-header">
         <h1>Modifier une transaction</h1>
         <div class="menu">
-            <a href="../controleur/list_transactions.php" class="btn">Retour à la liste</a>
-            <a href="../../compte/controleur/logout.php" class="btn logout-btn">Déconnexion</a>
+            <a href="../../controleur/transactions/list_transactions.php" class="btn">Retour à la liste</a>
+            <a href="../../../compte/controleur/logout.php" class="btn logout-btn">Déconnexion</a>
         </div>
     </header>
 
     <div class="container">
         <div class="content">
-            <form method="POST" action="../controleur/update_transaction.php">
+            <form method="POST" action="../../controleur/transactions/update_transaction.php">
                 <input type="hidden" name="transaction_id" value="<?= htmlspecialchars($transaction['id']) ?>">
 
                 <p><strong>Type de transaction :</strong></p>

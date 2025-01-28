@@ -2,11 +2,11 @@
 session_start();
 
 if (!isset($_SESSION['login'])) {
-    header("Location: ../../compte/vue/index.php?error=1");
+    header("Location: ../../../compte/vue/index.php?error=1");
     exit();
 }
 
-include '../modele/connexion.php';
+include '../../modele/connexion.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     try {
@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $reqInsertCategorie = "INSERT INTO categories (id_client, nom) VALUES (:id_client, :nom)";
         $connexion->execSQL($reqInsertCategorie, ['id_client' => $id_client, 'nom' => $nomCategorie]);
 
-        header("Location: ../controleur/list_categories.php?success=1");
+        header("Location: ../../controleur/categories/list_categories.php?success=1");
         exit();
     } catch (Exception $e) {
         $errorMessage = $e->getMessage();
@@ -49,16 +49,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ajouter une catégorie</title>
-    <link rel="stylesheet" href="../../style/finances.css">
-    <link rel="icon" type="image/png" href="../../assets/images/favicon.png">
+    <link rel="stylesheet" href="../../../style/finances.css">
+    <link rel="icon" type="image/png" href="../../../assets/images/favicon.png">
 </head>
 
 <body>
     <header class="main-header">
         <h1>Ajouter une nouvelle catégorie</h1>
         <div class="menu">
-            <a href="../vue/index.php" class="btn">Retour à l'acceuil</a>
-            <a href="../../compte/controleur/logout.php" class="btn logout-btn">Déconnexion</a>
+            <a href="../../vue/index.php" class="btn">Retour à l'acceuil</a>
+            <a href="../../../compte/controleur/logout.php" class="btn logout-btn">Déconnexion</a>
         </div>
     </header>
 

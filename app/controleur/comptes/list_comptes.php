@@ -2,11 +2,11 @@
 session_start();
 
 if (!isset($_SESSION['login'])) {
-    header("Location: ../../compte/vue/index.php?error=1");
+    header("Location: ../../../compte/vue/index.php?error=1");
     exit();
 }
 
-include '../modele/connexion.php';
+include '../../modele/connexion.php';
 
 try {
     $connexion = new Connexion();
@@ -36,8 +36,8 @@ try {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vos Comptes Bancaires</title>
-    <link rel="stylesheet" href="../../style/finances.css?v=1.1">
-    <link rel="icon" type="image/png" href="../../assets/images/favicon.png">
+    <link rel="stylesheet" href="../../../style/finances.css?v=1.1">
+    <link rel="icon" type="image/png" href="../../../assets/images/favicon.png">
 
     <script>
         function toggleCompteList() {
@@ -56,8 +56,8 @@ try {
     <header class="main-header">
         <h1>Bienvenue, <?= htmlspecialchars($login) ?> !</h1>
         <div class="menu">
-            <a href="../vue/index.php" class="btn btn-primary">Retour à l'accueil</a>
-            <a href="../../compte/controleur/logout.php" class="btn btn-danger">Déconnexion</a>
+            <a href="../../vue/index.php" class="btn btn-primary">Retour à l'accueil</a>
+            <a href="../../../compte/controleur/logout.php" class="btn btn-danger">Déconnexion</a>
         </div>
     </header>
 
@@ -90,13 +90,13 @@ try {
                 <?php endif; ?>
 
                 <div class="action-buttons">
-                    <a href="../controleur/ajouter_compte.php" class="btn btn-add" style="margin-right: 20px">Ajouter un compte</a>
+                    <a href="../../controleur/comptes/ajouter_compte.php" class="btn btn-add" style="margin-right: 20px">Ajouter un compte</a>
                     <a href="javascript:void(0);" class="btn btn-more" style="margin-right: 20px" onclick="toggleCompteList()">Modifier un compte</a>
                     <a href="javascript:void(0);" class="btn btn-delete" onclick="toggleDeleteCompteForm()">Supprimer un compte</a>
                 </div>
 
                 <div id="delete-compte-form" style="display:none; margin-top: 20px;">
-                    <form action="../controleur/supprimer_compte.php" method="POST">
+                    <form action="../../controleur/comptes/supprimer_compte.php" method="POST">
                         <label for="compte">Sélectionnez un compte à supprimer :</label>
                         <select name="id_compte" id="compte" required>
                             <?php foreach ($comptes as $compte): ?>
@@ -110,7 +110,7 @@ try {
                 </div>
 
                 <div id="compte-list" style="display:none; margin-top: 20px;">
-                    <form action="../controleur/modifier_compte.php" method="POST">
+                    <form action="../../controleur/comptes/modifier_compte.php" method="POST">
                         <label for="compte">Sélectionnez un compte à modifier :</label>
                         <select name="id_compte" id="compte" required>
                             <?php foreach ($comptes as $compte): ?>

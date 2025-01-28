@@ -2,11 +2,11 @@
 session_start();
 
 if (!isset($_SESSION['login'])) {
-    header("Location: ../../compte/vue/index.php?error=1");
+    header("Location: ../../../compte/vue/index.php?error=1");
     exit();
 }
 
-include '../modele/connexion.php';
+include '../../modele/connexion.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     try {
@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $compte = $connexion->execSQL($reqCompte, [$idCompte]);
 
             if (empty($compte)) {
-                header("Location: ../controleur/list_compte.php?error=Compte introuvable.");
+                header("Location: ../../controleur/comptes/list_compte.php?error=Compte introuvable.");
                 exit();
             }
 
@@ -30,16 +30,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $connexion->execSQL($reqDeleteCompte, [$idCompte]);
 
             // Redirection après suppression avec succès
-            header("Location: ../controleur/list_comptes.php?success=1");
+            header("Location: ../../controleur/comptes/list_comptes.php?success=1");
             exit();
         } else {
-            header("Location: ../controleur/list_comptes.php?error=Aucun compte sélectionné.");
+            header("Location: ../../controleur/comptes/list_comptes.php?error=Aucun compte sélectionné.");
             exit();
         }
     } catch (Exception $e) {
         die('Erreur : ' . $e->getMessage());
     }
 } else {
-    header("Location: ../controleur/list_comptes.php");
+    header("Location: ../../controleur/comptes/list_comptes.php");
     exit();
 }

@@ -90,8 +90,8 @@ try {
                 <?php else: ?>
                     <p>Vous n'avez aucun compte bancaire enregistré.</p>
                 <?php endif; ?>
-                <a href="../controleur/list_comptes.php" class="btn btn-more" style="margin-top: 20px;">Voir mes comptes</a>
-                <a href="../controleur/ajouter_compte.php" class="btn btn-add" style="margin-top: 20px;">Ajouter un compte</a>
+                <a href="../controleur/comptes/list_comptes.php" class="btn btn-more" style="margin-top: 20px;">Voir mes comptes</a>
+                <a href="../controleur/comptes/ajouter_compte.php" class="btn btn-add" style="margin-top: 20px;">Ajouter un compte</a>
             </section>
 
             <section>
@@ -125,8 +125,8 @@ try {
                 <?php else: ?>
                     <p>Vous n'avez aucune transaction enregistrée.</p>
                 <?php endif; ?>
-                <a href="../controleur/list_transactions.php" class="btn btn-more">Voir mes transactions</a>
-                <a href="../controleur/ajouter_transaction.php" class="btn btn-add">Ajouter une transaction</a>
+                <a href="../controleur/transactions/list_transactions.php" class="btn btn-more">Voir mes transactions</a>
+                <a href="../controleur/transactions/ajouter_transaction.php" class="btn btn-add">Ajouter une transaction</a>
             </section>
 
             <section>
@@ -152,22 +152,22 @@ try {
                                     <td><?= htmlspecialchars($categorie['id']) ?></td>
                                     <td><?= htmlspecialchars($categorie['nom']) ?></td>
                                     <td>
-                                        <a href="../controleur/modifier_categorie.php?id=<?= $categorie['id'] ?>" class="btn btn-edit">Modifier</a>
-                                        <a href="../controleur/supprimer_categorie.php?id=<?= $categorie['id'] ?>" class="btn btn-delete" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette catégorie ?')">Supprimer</a>
+                                        <a href="../controleur/categories/modifier_categorie.php?id=<?= $categorie['id'] ?>" class="btn btn-edit">Modifier</a>
+                                        <a href="../controleur/categories/supprimer_categorie.php?id=<?= $categorie['id'] ?>" class="btn btn-delete" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette catégorie ?')">Supprimer</a>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
                         </tbody>
                     </table>
                     <?php if (count($categories) > $limit): ?>
-                        <a href="../controleur/list_categories.php" class="btn btn-more">Voir plus de catégories</a>
+                        <a href="../controleur/categories/list_categories.php" class="btn btn-more">Voir plus de catégories</a>
                     <?php endif; ?>
 
                 <?php else: ?>
                     <p>Vous n'avez aucune catégorie enregistrée.</p>
                 <?php endif; ?>
 
-                <a href="../controleur/ajouter_categorie.php" class="btn btn-add">Ajouter une catégorie</a>
+                <a href="../controleur/categories/ajouter_categorie.php" class="btn btn-add">Ajouter une catégorie</a>
             </section>
 
 

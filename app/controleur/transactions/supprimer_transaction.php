@@ -2,11 +2,11 @@
 session_start();
 
 if (!isset($_SESSION['login'])) {
-    header("Location: ../../compte/vue/index.php?error=1");
+    header("Location: ../../../compte/vue/index.php?error=1");
     exit();
 }
 
-include '../modele/connexion.php';
+include '../../modele/connexion.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     try {
@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $transaction = $connexion->execSQL($reqTransaction, [$transactionId]);
 
             if (empty($transaction)) {
-                header("Location: ../controleur/list_transactions.php?error=Transaction introuvable.");
+                header("Location: ../../controleur/transactions/list_transactions.php?error=Transaction introuvable.");
                 exit();
             }
 
@@ -40,16 +40,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $reqUpdateSolde = "UPDATE compte_bancaire SET solde = solde + ? WHERE id_compte = ?";
             $connexion->execSQL($reqUpdateSolde, [$ajustement, $idCompte]);
 
-            header("Location: ../controleur/list_transactions.php?success=1");
+            header("Location: ../../controleur/transactions/list_transactions.php?success=1");
             exit();
         } else {
-            header("Location: ../controleur/list_transactions.php?error=Aucune transaction sélectionnée.");
+            header("Location: ../../controleur/transactions/list_transactions.php?error=Aucune transaction sélectionnée.");
             exit();
         }
     } catch (Exception $e) {
         die('Erreur : ' . $e->getMessage());
     }
 } else {
-    header("Location: ../controleur/list_transactions.php");
+    header("Location: ../../controleur/transactions/list_transactions.php");
     exit();
 }

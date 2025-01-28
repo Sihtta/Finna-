@@ -2,11 +2,11 @@
 session_start();
 
 if (!isset($_SESSION['login'])) {
-    header("Location: ../../compte/vue/index.php?error=1");
+    header("Location: ../../../compte/vue/index.php?error=1");
     exit();
 }
 
-include '../modele/connexion.php';
+include '../../modele/connexion.php';
 
 try {
     $connexion = new Connexion();
@@ -36,16 +36,16 @@ try {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Finances App</title>
-    <link rel="stylesheet" href="../../style/finances.css">
-    <link rel="icon" type="image/png" href="../../assets/images/favicon.png">
+    <link rel="stylesheet" href="../../../style/finances.css">
+    <link rel="icon" type="image/png" href="../../../assets/images/favicon.png">
 </head>
 
 <body>
     <header class="main-header">
         <h1>Bienvenue, <?= htmlspecialchars($login) ?> !</h1>
         <div class="menu">
-            <a href="../vue/index.php" class="btn">Retour à l'accueil</a>
-            <a href="../../compte/controleur/logout.php" class="btn logout-btn">Déconnexion</a>
+            <a href="../../vue/index.php" class="btn">Retour à l'accueil</a>
+            <a href="../../../compte/controleur/logout.php" class="btn logout-btn">Déconnexion</a>
         </div>
 
         <?php if (isset($_GET['success'])): ?>
@@ -78,8 +78,8 @@ try {
                                     <td><?= htmlspecialchars($categorie['id']) ?></td>
                                     <td><?= htmlspecialchars($categorie['nom']) ?></td>
                                     <td>
-                                        <a href="../controleur/modifier_categorie.php?id=<?= $categorie['id'] ?>" class="btn btn-edit">Modifier</a>
-                                        <a href="../controleur/supprimer_categorie.php?id=<?= $categorie['id'] ?>" class="btn btn-delete" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette catégorie ?')">Supprimer</a>
+                                        <a href="../../controleur/categories/modifier_categorie.php?id=<?= $categorie['id'] ?>" class="btn btn-edit">Modifier</a>
+                                        <a href="../../controleur/categories/supprimer_categorie.php?id=<?= $categorie['id'] ?>" class="btn btn-delete" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette catégorie ?')">Supprimer</a>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
@@ -90,7 +90,7 @@ try {
                     <p>Vous n'avez aucune catégorie enregistrée.</p>
                 <?php endif; ?>
 
-                <a href="../controleur/ajouter_categorie.php" class="btn btn-add">Ajouter une catégorie</a>
+                <a href="../../controleur/categories/ajouter_categorie.php" class="btn btn-add">Ajouter une catégorie</a>
             </section>
 
 

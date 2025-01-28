@@ -2,11 +2,11 @@
 session_start();
 
 if (!isset($_SESSION['login'])) {
-    header("Location: ../../compte/vue/index.php?error=1");
+    header("Location: ../../../compte/vue/index.php?error=1");
     exit();
 }
 
-include '../modele/connexion.php';
+include '../../modele/connexion.php';
 
 try {
     $connexion = new Connexion();
@@ -44,16 +44,16 @@ try {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Finances App</title>
-    <link rel="stylesheet" href="../../style/finances.css">
-    <link rel="icon" type="image/png" href="../../assets/images/favicon.png">
+    <link rel="stylesheet" href="../../../style/finances.css">
+    <link rel="icon" type="image/png" href="../../../assets/images/favicon.png">
 </head>
 
 <body>
     <header class="main-header">
         <h1>Bienvenue, <?= htmlspecialchars($login) ?> !</h1>
         <div class="menu">
-            <a href="../vue/index.php" class="btn">Retour à l'accueil</a>
-            <a href="../../compte/controleur/logout.php" class="btn logout-btn">Déconnexion</a>
+            <a href="../../vue/index.php" class="btn">Retour à l'accueil</a>
+            <a href="../../../compte/controleur/logout.php" class="btn logout-btn">Déconnexion</a>
         </div>
 
         <?php if (isset($_GET['success'])): ?>
@@ -78,7 +78,7 @@ try {
             <section>
                 <h2>Vos Transactions</h2>
                 <?php if (!empty($transactions)): ?>
-                    <form method="POST" action="../controleur/supprimer_transaction.php">
+                    <form method="POST" action="../../controleur/transactions/supprimer_transaction.php">
                         <table class="styled-table">
                             <thead>
                                 <tr>
@@ -107,8 +107,8 @@ try {
                                 <?php endforeach; ?>
                             </tbody>
                         </table>
-                        <button type="submit" formaction="../controleur/ajouter_transaction.php" class="btn btn-add">Ajouter une transaction</button>
-                        <button type="submit" formaction="../controleur/modifier_transaction.php" class="btn btn-edit">Modifier la transaction</button>
+                        <button type="submit" formaction="../../controleur/transactions/ajouter_transaction.php" class="btn btn-add">Ajouter une transaction</button>
+                        <button type="submit" formaction="../../controleur/transactions/modifier_transaction.php" class="btn btn-edit">Modifier la transaction</button>
                         <button type="submit" class="btn btn-delete">Supprimer la transaction</button>
                     </form>
 

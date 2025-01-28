@@ -2,11 +2,11 @@
 session_start();
 
 if (!isset($_SESSION['login'])) {
-    header("Location: ../../compte/vue/index.php?error=1");
+    header("Location: ../../../compte/vue/index.php?error=1");
     exit();
 }
 
-include '../modele/connexion.php';
+include '../../modele/connexion.php';
 
 try {
     if (empty($_POST['transaction_id']) || empty($_POST['type']) || empty($_POST['montant']) || empty($_POST['categorie']) || empty($_POST['compte'])) {
@@ -73,7 +73,7 @@ try {
         'id' => $transactionId
     ]);
 
-    header("Location: ../controleur/list_transactions.php?success=1");
+    header("Location: ../../controleur/transactions/list_transactions.php?success=1");
     exit();
 } catch (Exception $e) {
     die("Erreur : " . $e->getMessage());

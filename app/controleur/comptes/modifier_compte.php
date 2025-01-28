@@ -2,19 +2,19 @@
 session_start();
 
 if (!isset($_SESSION['login'])) {
-    header("Location: ../../compte/controleur/index.php?error=1");
+    header("Location: ../../../compte/controleur/index.php?error=1");
     exit();
 }
 
 if (!isset($_POST['id_compte']) || !is_numeric($_POST['id_compte'])) {
-    header("Location: ../controleur/list_compte.php?error=Aucun compte sélectionné.");
+    header("Location: ../../controleur/list_compte.php?error=Aucun compte sélectionné.");
     exit();
 }
 
 $id_compte = $_POST['id_compte'];
 $login = $_SESSION['login'];
 
-include '../modele/connexion.php';
+include '../../modele/connexion.php';
 
 try {
     $connexion = new Connexion();
@@ -40,8 +40,8 @@ try {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modifier un compte bancaire</title>
-    <link rel="stylesheet" href="../../style/finances.css">
-    <link rel="icon" type="image/png" href="../../assets/images/favicon.png">
+    <link rel="stylesheet" href="../../../style/finances.css">
+    <link rel="icon" type="image/png" href="../../../assets/images/favicon.png">
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             ajusterSolde();
@@ -85,14 +85,14 @@ try {
     <header class="main-header">
         <h1>Modifier un compte bancaire</h1>
         <div class="menu">
-            <a href="../controleur/list_compte.php" class="btn">Retour à la liste</a>
-            <a href="../../compte/controleur/logout.php" class="btn logout-btn">Déconnexion</a>
+            <a href="../../controleur/comptes/list_compte.php" class="btn">Retour à la liste</a>
+            <a href="../../../compte/controleur/logout.php" class="btn logout-btn">Déconnexion</a>
         </div>
     </header>
 
     <div class="container">
         <div class="content">
-            <form method="POST" action="../controleur/update_compte.php">
+            <form method="POST" action="../../controleur/comptes/update_compte.php">
                 <input type="hidden" name="id_compte" value="<?= htmlspecialchars($compte['id_compte']) ?>">
 
                 <p><strong>Libellé du compte :</strong></p>
