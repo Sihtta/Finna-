@@ -83,7 +83,7 @@ try {
                                 <h3><?= htmlspecialchars($compte['libelle']) ?></h3>
                                 <p><strong>Type :</strong> <?= htmlspecialchars($compte['type']) ?></p>
                                 <p><strong>Solde :</strong> <?= htmlspecialchars($compte['solde']) ?> €</p>
-                                <a href="#" class="btn">Voir détails</a>
+                                <a href="#" class="btn">Détails</a>
                             </div>
                         <?php endforeach; ?>
                     </div>

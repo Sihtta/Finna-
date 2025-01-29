@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $compte = $connexion->execSQL($reqCompte, [$idCompte]);
 
             if (empty($compte)) {
-                header("Location: ../../controleur/comptes/list_compte.php?error=Compte introuvable.");
+                header("Location: ../../controleur/comptes/list_comptes.php?error=Compte introuvable.");
                 exit();
             }
 

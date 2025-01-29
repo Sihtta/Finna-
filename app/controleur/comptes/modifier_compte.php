@@ -7,7 +7,7 @@ if (!isset($_SESSION['login'])) {
 }
 
 if (!isset($_POST['id_compte']) || !is_numeric($_POST['id_compte'])) {
-    header("Location: ../../controleur/list_compte.php?error=Aucun compte sélectionné.");
+    header("Location: ../../controleur/list_comptes.php?error=Aucun compte sélectionné.");
     exit();
 }
 
@@ -85,7 +85,7 @@ try {
     <header class="main-header">
         <h1>Modifier un compte bancaire</h1>
         <div class="menu">
-            <a href="../../controleur/comptes/list_compte.php" class="btn">Retour à la liste</a>
+            <a href="../../controleur/comptes/list_comptes.php" class="btn">Retour à la liste</a>
             <a href="../../../compte/controleur/logout.php" class="btn logout-btn">Déconnexion</a>
         </div>
     </header>
