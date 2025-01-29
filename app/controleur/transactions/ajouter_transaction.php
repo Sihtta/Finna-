@@ -129,7 +129,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <body>
     <header class="main-header">
-        <h1>Finna - Ajouter une transaction</h1>
+        <h1>Finna - Ajouter Transaction</h1>
         <div class="menu">
             <a href="../../vue/index.php" class="btn">Retour à l'accueil</a>
             <a href="../../../compte/controleur/logout.php" class="btn logout-btn">Déconnexion</a>
