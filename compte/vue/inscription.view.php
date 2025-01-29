@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Inscription Client</title>
+    <title>Finna - Inscription</title>
     <link rel="stylesheet" href="../../style/compte.css?v=1.3">
     <link rel="icon" type="image/png" href="../../assets/images/favicon.png">
 </head>

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Accueil - Finna</title>
+    <title>Finna - Connexion</title>
     <link rel="stylesheet" href="../../style/compte.css?v=1.2">
     <link rel="icon" type="image/png" href="../../assets/images/favicon.png">
 </head>

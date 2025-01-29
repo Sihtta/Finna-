@@ -83,7 +83,7 @@ try {
 
 <body>
     <header class="main-header">
-        <h1>Modifier un compte bancaire</h1>
+        <h1>Finna - Modifier un compte bancaire</h1>
         <div class="menu">
             <a href="../../controleur/comptes/list_comptes.php" class="btn">Retour à la liste</a>
             <a href="../../../compte/controleur/logout.php" class="btn logout-btn">Déconnexion</a>

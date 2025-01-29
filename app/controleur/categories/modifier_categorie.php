@@ -70,7 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modifier la catégorie</title>
+    <title>Finna - Modifier la catégorie</title>
     <link rel="stylesheet" href="../../../style/finances.css">
     <link rel="icon" type="image/png" href="../../../assets/images/favicon.png">
 </head>
