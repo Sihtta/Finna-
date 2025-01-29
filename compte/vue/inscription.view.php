@@ -21,7 +21,9 @@
             </nav>
         </div>
     </header>
-
+    <h1 class="main-title">
+        Bienvenue sur <span class="highlight-green">Finna</span>
+    </h1>
     <div class="signup-form">
         <div class="container2">
             <div class="content2">
