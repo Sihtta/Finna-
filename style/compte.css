@@ -5,6 +5,18 @@ body {
     color: #D3D3D3;
 }
 
+.content p {
+    text-align: center; 
+    font-size: 1.1em;
+    max-width: 600px; 
+    margin: 0 auto; 
+}
+
+.content p:first-of-type {
+    max-width: 550px; 
+}
+
+
 .main-header {
     width: 100% !important;  
     max-width: none !important;  
@@ -53,7 +65,7 @@ body {
     align-items: center;
     width: 100%;
     padding: 0;
-    margin-bottom: 4%;
+    margin-bottom: 2%;
 }
 
 .logo {
@@ -73,7 +85,7 @@ body {
 }
 
 .nav-links a {
-    color: #D3D3D3;
+    color: #fff;
     font-size: 1em;
     text-decoration: none;
     font-weight: bold;
@@ -205,11 +217,28 @@ a:hover {
     overflow: hidden;
     width: 100%;
 }
+.content-wrapper {
+    display: flex;
+    align-items: center; 
+    justify-content: space-between; 
+    gap: 30px; 
+}
+
+.image-container {
+    flex-shrink: 0; /* Empêche l’image de rétrécir */
+    margin-right: 20%;
+}
+
+.right-image {
+    width: 280px; /* Taille de l’image */
+    height: auto;
+}
 
 .content {
     position: relative;
     z-index: 2;
     border-radius: 20px;
+    flex: 1;
 }
 
 .container2 {
@@ -275,14 +304,15 @@ a:hover {
     --color-hover: #fff; 
     --background: #00997E; 
     --background-hover: #fff; 
-    --hover-back: #45959c;
-    --hover-front: #3f9798;
+    --hover-back: #02816a;
+    --hover-front: #027661;
     padding: 8px 28px;
     border-radius: 20px;
     line-height: 24px;
     font-size: 14px;
     font-weight: 600;
     letter-spacing: .02em;
+    margin-top: 25px;
     border: none;
     outline: none;
     position: relative;
@@ -370,8 +400,10 @@ a:hover {
     }
 }
 
-.cta-container {
+.cta-container h2{
     text-align: center; 
+    margin-top: 10px;
+    margin-bottom: 0;
 }
 
 .services-title {
@@ -408,8 +440,8 @@ a:hover {
     display: flex;
     justify-content: center;
     gap: 30px;
-    min-height: 280px;
-    margin-top: 30px;
+    min-height: 260px;
+    margin-top: 20px;
     margin-bottom: 30px;
     flex-wrap: wrap;
 }

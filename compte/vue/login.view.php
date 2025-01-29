@@ -14,8 +14,10 @@
     <header class="main-header">
         <div class="header-content">
             <div class="logo">
-                <img src="../../assets/images/favicon.png" alt="Logo Finna" class="logo-img">
-                <span class="logo-text">Finna</span>
+                <a href="index.php">
+                    <img src="../../assets/images/favicon.png" alt="Logo Finna" class="logo-img">
+                </a>
+                <a href="index.php" style="text-decoration: none"> <span class="logo-text">Finna</span> </a>
             </div>
             <nav class="nav-links">
                 <a href="index.php">Accueil</a>
@@ -23,7 +25,8 @@
             </nav>
         </div>
     </header>
-    <h1 class="main-title">
+
+    <h1 class="main-title" style="margin-top: 5%">
         Bienvenue sur <span class="highlight-green">Finna</span>
     </h1>
     <div class="login-form">
