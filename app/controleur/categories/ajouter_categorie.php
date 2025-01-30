@@ -54,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 
 <body>
-    <header class="main-header">
+    <header class="main-header" style="top:0; position: fixed;">
         <div class="header-content">
             <div class="logo">
                 <a href="index.php">
@@ -72,7 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </header>
     <header class="main-header2">
         <h1>Ajouter une nouvelle catégorie</h1>
-        <div class="menu">
+        <div class=" menu">
             <a href="../../vue/index.php" class="btn">Retour à l'acceuil</a>
             <a href="../../../compte/controleur/logout.php" class="btn logout-btn">Déconnexion</a>
         </div>

@@ -76,7 +76,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 
 <body>
-    <header class="main-header">
+    <header class="main-header" style="top:0; position: fixed;">
         <div class="header-content">
             <div class="logo">
                 <a href="index.php">
