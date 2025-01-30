@@ -14,14 +14,58 @@ body {
     overflow-x: hidden;
 }
 
+.main-header {
+    width: 100% !important;  
+    max-width: none !important;  
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 8px 8px;
+    margin-bottom: 2%;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo-img {
+    width: 40px;
+    margin-right: 10px;
+}
+
+.logo-text {
+    font-size: 1.6em;
+    font-weight: bold;
+    color: #D3D3D3;
+}
+
+.nav-links a {
+    color: #fff;
+    font-size: 1em;
+    text-decoration: none;
+    font-weight: bold;
+    margin-left: 0.8rem;
+    padding-right: 1.1rem;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: #00C8A4;
+}
+
 /* En-tête */
-header.main-header {
+header.main-header2 {
     padding: 20px;
     color: #E5E5E5;
     width: 100%;
 }
 
-header.main-header h1 {
+header.main-header2 h1 {
     margin: 0;
     font-size: 2.5em;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);

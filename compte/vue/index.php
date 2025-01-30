@@ -11,8 +11,6 @@
 </head>
 
 <body>
-
-    <!-- Header -->
     <header class="main-header">
         <div class="header-content">
             <div class="logo">

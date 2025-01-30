@@ -7,7 +7,7 @@ if (!isset($_SESSION['login'])) {
 }
 
 if (!isset($_POST['id_compte']) || !is_numeric($_POST['id_compte'])) {
-    header("Location: ../../controleur/list_comptes.php?error=Aucun compte sélectionné.");
+    header("Location: ../comptes/list_comptes.php?error=Aucun compte sélectionné.");
     exit();
 }
 
@@ -40,7 +40,7 @@ try {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modifier un compte bancaire</title>
-    <link rel="stylesheet" href="../../../style/finances.css">
+    <link rel="stylesheet" href="../../../style/finances.css?v=1.2">
     <link rel="icon" type="image/png" href="../../../assets/images/favicon.png">
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -83,16 +83,32 @@ try {
 
 <body>
     <header class="main-header">
-        <h1>Finna - Modifier Compte Bancaire</h1>
+        <div class="header-content">
+            <div class="logo">
+                <a href="index.php">
+                    <img src="../../../assets/images/favicon.png" alt="Logo Finna" class="logo-img">
+                </a>
+                <a href="index.php" style="text-decoration: none"> <span class="logo-text">Finna</span> </a>
+            </div>
+            <nav class="nav-links">
+                <a href="../../vue/index.php">Accueil</a>
+                <a href="../comptes/list_comptes.php">Mes comptes</a>
+                <a href="../transactions/list_transactions.php">Mes transactions</a>
+                <a href="../categories/list_categories.php">Mes catégories</a>
+            </nav>
+        </div>
+    </header>
+    <header class="main-header2">
+        <h1>Modifier un compte bancaire</h1>
         <div class="menu">
-            <a href="../../controleur/comptes/list_comptes.php" class="btn">Retour à la liste</a>
+            <a href="../comptes/list_comptes.php" class="btn">Retour à la liste</a>
             <a href="../../../compte/controleur/logout.php" class="btn logout-btn">Déconnexion</a>
         </div>
     </header>
 
     <div class="container">
         <div class="content">
-            <form method="POST" action="../../controleur/comptes/update_compte.php">
+            <form method="POST" action="../comptes/update_compte.php">
                 <input type="hidden" name="id_compte" value="<?= htmlspecialchars($compte['id_compte']) ?>">
 
                 <p><strong>Libellé du compte :</strong></p>

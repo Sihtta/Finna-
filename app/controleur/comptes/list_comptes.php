@@ -36,7 +36,7 @@ try {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Finna - Comptes</title>
-    <link rel="stylesheet" href="../../../style/finances.css?v=1.1">
+    <link rel="stylesheet" href="../../../style/finances.css?v=1.2">
     <link rel="icon" type="image/png" href="../../../assets/images/favicon.png">
 
     <script>
@@ -54,6 +54,21 @@ try {
 
 <body>
     <header class="main-header">
+        <div class="header-content">
+            <div class="logo">
+                <a href="index.php">
+                    <img src="../../../assets/images/favicon.png" alt="Logo Finna" class="logo-img">
+                </a>
+                <a href="index.php" style="text-decoration: none"> <span class="logo-text">Finna</span> </a>
+            </div>
+            <nav class="nav-links">
+                <a href="../../vue/index.php">Accueil</a>
+                <a href="../transactions/list_transactions.php">Mes transactions</a>
+                <a href="../categories/list_categories.php">Mes catégories</a>
+            </nav>
+        </div>
+    </header>
+    <header class="main-header2">
         <h1>Bienvenue, <?= htmlspecialchars($login) ?> !</h1>
         <div class="menu">
             <a href="../../vue/index.php" class="btn btn-primary">Retour à l'accueil</a>
