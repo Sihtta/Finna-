@@ -95,7 +95,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <header class="main-header2">
         <h1>Modifier la catégorie</h1>
         <div class="menu">
-            <a href="../../vue/index.php" class="btn">Retour à l'acceuil</a>
+            <a href="../../vue/index.php" class="btn">Retour à l'accueil</a>
             <a href="../../../compte/controleur/logout.php" class="btn logout-btn">Déconnexion</a>
         </div>
     </header>

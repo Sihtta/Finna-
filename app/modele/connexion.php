@@ -35,11 +35,25 @@ class Connexion
         try {
             $stmt = $this->db->prepare($req);
             $stmt->execute($valeurs);
-            $resultats = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            return $resultats;
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
             die('Erreur lors de l\'exécution de la requête : ' . $e->getMessage());
         }
+    }
+
+    public function beginTransaction()
+    {
+        $this->db->beginTransaction();
+    }
+
+    public function commit()
+    {
+        $this->db->commit();
+    }
+
+    public function rollBack()
+    {
+        $this->db->rollBack();
     }
 
     public function getPDO()

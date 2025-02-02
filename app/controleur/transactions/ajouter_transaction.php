@@ -25,32 +25,34 @@ try {
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     try {
-        // Vérification des champs obligatoires
+        $connexion->beginTransaction();
+
         if (empty($_POST['type']) || empty($_POST['montant']) || empty($_POST['categorie']) || empty($_POST['compte']) || empty($_POST['date'])) {
             throw new Exception("Tous les champs sauf description doivent être remplis.");
         }
 
         $typeTransaction = $_POST['type'];
-        $montant = $_POST['montant'];
+        $montant = floatval($_POST['montant']);
         $categorie = $_POST['categorie'];
         $description = $_POST['description'];
         $compteId = $_POST['compte'];
-        $dateTransaction = $_POST['date'];
 
-        // Ajuster le montant si c'est une dépense
+        // Concatenation de la date avec l'heure actuelle
+        $dateTransaction = $_POST['date'] . ' ' . date('H:i:s'); // Ajout de l'heure actuelle
+
+        $compteSourceId = $_POST['compte_source'] ?? null;
+
+        // Vérification que le compte source n'est pas le même que le compte de destination
+        if ($compteSourceId && $compteSourceId === $compteId) {
+            throw new Exception("Le compte source ne peut pas être le même que le compte de destination.");
+        }
+
+        // Ajuster le montant pour les dépenses (en négatif)
         if ($typeTransaction === 'dépense' && $montant > 0) {
             $montant = -$montant;
         }
 
-        // Vérifier l'existence du compte bancaire de l'utilisateur
-        $reqCompte = "SELECT id_compte FROM compte_bancaire WHERE id_client = (SELECT id_cli FROM client WHERE login = :login) AND id_compte = :id_compte";
-        $resultCompte = $connexion->execSQL($reqCompte, ['login' => $login, 'id_compte' => $compteId]);
-
-        if (empty($resultCompte)) {
-            throw new Exception("Compte bancaire non trouvé.");
-        }
-
-        // Insertion de la transaction dans la base de données
+        // Insertion de la transaction principale
         $reqInsertTransaction = "INSERT INTO transactions (type, montant, categorie, date, description, id_compte) 
                                     VALUES (:type, :montant, :categorie, :date, :description, :id_compte)";
         $connexion->execSQL($reqInsertTransaction, [
@@ -62,15 +64,46 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             'id_compte' => $compteId
         ]);
 
+        // Mise à jour du solde pour le compte cible
         $connexion->mettreAJourSolde($compteId);
+
+        // Gestion de la transaction inverse si un compte source est défini
+        if ($compteSourceId && $compteSourceId !== $compteId) {
+            // Inverser le type de la transaction
+            $typeInverse = ($typeTransaction === 'dépense') ? 'revenu' : 'dépense';
+
+            // Calculer le montant inverse
+            $montantInverse = -$montant;
+
+            // Insertion de la transaction inverse
+            $reqInsertTransactionSource = "INSERT INTO transactions (type, montant, categorie, date, description, id_compte) 
+                                            VALUES (:type, :montant, :categorie, :date, :description, :id_compte)";
+            $connexion->execSQL($reqInsertTransactionSource, [
+                'type' => $typeInverse,
+                'montant' => $montantInverse,
+                'categorie' => $categorie,  // Garder la même catégorie
+                'date' => $dateTransaction,
+                'description' => $description,
+                'id_compte' => $compteSourceId
+            ]);
+
+            // Mise à jour du solde pour le compte source
+            $connexion->mettreAJourSolde($compteSourceId);
+        }
+
+        // Validation de la transaction
+        $connexion->commit();
 
         header("Location: ../../controleur/transactions/list_transactions.php?success=1");
         exit();
     } catch (Exception $e) {
+        $connexion->rollBack();
         $errorMessage = $e->getMessage();
     }
 }
+
 ?>
+
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -190,12 +223,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                 <p><strong>Compte :</strong></p>
                 <select name="compte" required>
-                    <?php
-                    foreach ($comptes as $compte) {
-                        echo "<option value=\"{$compte['id_compte']}\">{$compte['libelle']}</option>";
-                    }
-                    ?>
+                    <?php foreach ($comptes as $compte): ?>
+                        <option value="<?= $compte['id_compte'] ?>"><?= htmlspecialchars($compte['libelle']) ?></option>
+                    <?php endforeach; ?>
                 </select>
+
+                <p><strong>Compte source (optionnel) :</strong></p>
+                <select name="compte_source">
+                    <option value="">Sélectionner un compte source</option>
+                    <?php foreach ($comptes as $compte): ?>
+                        <option value="<?= $compte['id_compte'] ?>"><?= htmlspecialchars($compte['libelle']) ?></option>
+                    <?php endforeach; ?>
+                </select>
+
+
 
                 <div class="button-container">
                     <button type="submit">Ajouter</button>
