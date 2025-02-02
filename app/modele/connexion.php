@@ -64,15 +64,39 @@ class Connexion
     public function mettreAJourSolde(int $id_compte): void
     {
         try {
+            // Récupérer le solde initial du compte
+            $reqSoldeInitial = "
+        SELECT solde_initial
+        FROM compte_bancaire
+        WHERE id_compte = :id_compte
+    ";
+            $resultatInitial = $this->execSQL($reqSoldeInitial, ['id_compte' => $id_compte]);
+
+            if (isset($resultatInitial[0]['solde_initial'])) {
+                $soldeInitial = $resultatInitial[0]['solde_initial'];
+            } else {
+                throw new Exception("Le compte avec l'ID $id_compte n'existe pas.");
+            }
+
+            // Récupérer la somme des transactions en cours pour ce compte (ajoutée ou soustraite)
+            $reqTransactions = "
+        SELECT IFNULL(SUM(montant), 0) AS total_transactions
+        FROM transactions
+        WHERE id_compte = :id_compte
+    ";
+            $resultatTransactions = $this->execSQL($reqTransactions, ['id_compte' => $id_compte]);
+            $totalTransactions = $resultatTransactions[0]['total_transactions'];
+
+            // Calculer le nouveau solde : solde initial + total des transactions
+            $nouveauSolde = $soldeInitial + $totalTransactions;
+
+            // Mettre à jour le solde dans la table
             $reqUpdateSolde = "
-            UPDATE compte_bancaire
-            SET solde = (
-                SELECT IFNULL(SUM(montant), 0)
-                FROM transactions
-                WHERE id_compte = :id_compte
-            )
-            WHERE id_compte = :id_compte";
-            $this->execSQL($reqUpdateSolde, ['id_compte' => $id_compte]);
+        UPDATE compte_bancaire
+        SET solde = :nouveauSolde
+        WHERE id_compte = :id_compte
+    ";
+            $this->execSQL($reqUpdateSolde, ['nouveauSolde' => $nouveauSolde, 'id_compte' => $id_compte]);
         } catch (Exception $e) {
             die("Erreur lors de la mise à jour du solde : " . $e->getMessage());
         }

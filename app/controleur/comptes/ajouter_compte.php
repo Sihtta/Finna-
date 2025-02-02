@@ -33,15 +33,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         $libelle = $_POST['libelle'];
         $type = $_POST['type'];
-        $solde = !empty($_POST['solde']) ? floatval($_POST['solde']) : 0.0;
+        // Récupérer le solde initial (ou 0 si non défini)
+        $soldeInitial = !empty($_POST['solde']) ? floatval($_POST['solde']) : 0.0;
+        $solde = $soldeInitial; // Le solde initial est aussi le solde actuel lors de la création
 
         // Insertion du compte bancaire dans la base de données
-        $reqInsertCompte = "INSERT INTO compte_bancaire (libelle, type, solde, id_client) 
-                            VALUES (:libelle, :type, :solde, :id_client)";
+        $reqInsertCompte = "INSERT INTO compte_bancaire (libelle, type, solde, solde_initial, id_client) 
+                            VALUES (:libelle, :type, :solde, :solde_initial, :id_client)";
         $connexion->execSQL($reqInsertCompte, [
             'libelle' => $libelle,
             'type' => $type,
             'solde' => $solde,
+            'solde_initial' => $soldeInitial,
             'id_client' => $idClient
         ]);
 
