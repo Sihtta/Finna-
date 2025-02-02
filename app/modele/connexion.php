@@ -64,7 +64,6 @@ class Connexion
     public function mettreAJourSolde(int $id_compte): void
     {
         try {
-            // Récupérer le solde initial du compte
             $reqSoldeInitial = "
         SELECT solde_initial
         FROM compte_bancaire
@@ -78,7 +77,6 @@ class Connexion
                 throw new Exception("Le compte avec l'ID $id_compte n'existe pas.");
             }
 
-            // Récupérer la somme des transactions en cours pour ce compte (ajoutée ou soustraite)
             $reqTransactions = "
         SELECT IFNULL(SUM(montant), 0) AS total_transactions
         FROM transactions
@@ -87,10 +85,8 @@ class Connexion
             $resultatTransactions = $this->execSQL($reqTransactions, ['id_compte' => $id_compte]);
             $totalTransactions = $resultatTransactions[0]['total_transactions'];
 
-            // Calculer le nouveau solde : solde initial + total des transactions
             $nouveauSolde = $soldeInitial + $totalTransactions;
 
-            // Mettre à jour le solde dans la table
             $reqUpdateSolde = "
         UPDATE compte_bancaire
         SET solde = :nouveauSolde

@@ -12,11 +12,9 @@ try {
     $connexion = new Connexion();
     $login = $_SESSION['login'];
 
-    // Récupération des comptes bancaires de l'utilisateur
     $reqComptes = "SELECT id_compte, libelle FROM compte_bancaire WHERE id_client = (SELECT id_cli FROM client WHERE login = :login)";
     $comptes = $connexion->execSQL($reqComptes, ['login' => $login]);
 
-    // Récupération des catégories de l'utilisateur
     $reqCategories = "SELECT id, nom FROM categories WHERE id_client = (SELECT id_cli FROM client WHERE login = :login)";
     $categories = $connexion->execSQL($reqCategories, ['login' => $login]);
 } catch (Exception $e) {
@@ -37,22 +35,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $description = $_POST['description'];
         $compteId = $_POST['compte'];
 
-        // Concatenation de la date avec l'heure actuelle
-        $dateTransaction = $_POST['date'] . ' ' . date('H:i:s'); // Ajout de l'heure actuelle
+        $dateTransaction = $_POST['date'] . ' ' . date('H:i:s');
 
         $compteSourceId = $_POST['compte_source'] ?? null;
 
-        // Vérification que le compte source n'est pas le même que le compte de destination
         if ($compteSourceId && $compteSourceId === $compteId) {
             throw new Exception("Le compte source ne peut pas être le même que le compte de destination.");
         }
 
-        // Ajuster le montant pour les dépenses (en négatif)
         if ($typeTransaction === 'dépense' && $montant > 0) {
             $montant = -$montant;
         }
 
-        // Insertion de la transaction principale
         $reqInsertTransaction = "INSERT INTO transactions (type, montant, categorie, date, description, id_compte) 
                                     VALUES (:type, :montant, :categorie, :date, :description, :id_compte)";
         $connexion->execSQL($reqInsertTransaction, [
@@ -64,34 +58,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             'id_compte' => $compteId
         ]);
 
-        // Mise à jour du solde pour le compte cible
         $connexion->mettreAJourSolde($compteId);
 
-        // Gestion de la transaction inverse si un compte source est défini
         if ($compteSourceId && $compteSourceId !== $compteId) {
-            // Inverser le type de la transaction
             $typeInverse = ($typeTransaction === 'dépense') ? 'revenu' : 'dépense';
 
-            // Calculer le montant inverse
             $montantInverse = -$montant;
 
-            // Insertion de la transaction inverse
             $reqInsertTransactionSource = "INSERT INTO transactions (type, montant, categorie, date, description, id_compte) 
                                             VALUES (:type, :montant, :categorie, :date, :description, :id_compte)";
             $connexion->execSQL($reqInsertTransactionSource, [
                 'type' => $typeInverse,
                 'montant' => $montantInverse,
-                'categorie' => $categorie,  // Garder la même catégorie
+                'categorie' => $categorie,
                 'date' => $dateTransaction,
                 'description' => $description,
                 'id_compte' => $compteSourceId
             ]);
 
-            // Mise à jour du solde pour le compte source
             $connexion->mettreAJourSolde($compteSourceId);
         }
 
-        // Validation de la transaction
         $connexion->commit();
 
         header("Location: ../../controleur/transactions/list_transactions.php?success=1");
