@@ -12,11 +12,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     try {
         $connexion = new Connexion();
 
-        // Vérifiez si un compte a été sélectionné
         if (isset($_POST['id_compte']) && !empty($_POST['id_compte'])) {
             $idCompte = $_POST['id_compte'];
 
-            // Vérifiez si le compte existe
             $reqCompte = "SELECT * FROM compte_bancaire WHERE id_compte = ?";
             $compte = $connexion->execSQL($reqCompte, [$idCompte]);
 
@@ -25,11 +23,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 exit();
             }
 
-            // Supprimer le compte bancaire
             $reqDeleteCompte = "DELETE FROM compte_bancaire WHERE id_compte = ?";
             $connexion->execSQL($reqDeleteCompte, [$idCompte]);
 
-            // Redirection après suppression avec succès
             header("Location: ../../controleur/comptes/list_comptes.php?success=1");
             exit();
         } else {

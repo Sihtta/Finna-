@@ -19,7 +19,6 @@ include '../../modele/connexion.php';
 try {
     $connexion = new Connexion();
 
-    // Récupération des détails du compte
     $reqCompte = "SELECT * FROM compte_bancaire WHERE id_compte = :id_compte";
     $compte = $connexion->execSQL($reqCompte, ['id_compte' => $id_compte]);
 

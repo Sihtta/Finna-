@@ -12,7 +12,6 @@ try {
     $connexion = new Connexion();
     $login = $_SESSION['login'];
 
-    // Récupération de l'ID client
     $reqClient = "SELECT id_cli FROM client WHERE login = :login";
     $resultClient = $connexion->execSQL($reqClient, ['login' => $login]);
 
@@ -26,18 +25,15 @@ try {
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     try {
-        // Vérification des champs obligatoires
         if (empty($_POST['libelle']) || empty($_POST['type'])) {
             throw new Exception("Le nom du compte et le type sont obligatoires.");
         }
 
         $libelle = $_POST['libelle'];
         $type = $_POST['type'];
-        // Récupérer le solde initial (ou 0 si non défini)
         $soldeInitial = !empty($_POST['solde']) ? floatval($_POST['solde']) : 0.0;
-        $solde = $soldeInitial; // Le solde initial est aussi le solde actuel lors de la création
+        $solde = $soldeInitial;
 
-        // Insertion du compte bancaire dans la base de données
         $reqInsertCompte = "INSERT INTO compte_bancaire (libelle, type, solde, solde_initial, id_client) 
                             VALUES (:libelle, :type, :solde, :solde_initial, :id_client)";
         $connexion->execSQL($reqInsertCompte, [
