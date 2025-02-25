@@ -18,7 +18,6 @@ try {
 
     $idCategorie = $_GET['id'];
 
-    // Récupération de l'id_client
     $reqClient = "SELECT id_cli FROM client WHERE login = :login";
     $resultClient = $connexion->execSQL($reqClient, ['login' => $login]);
 
@@ -28,7 +27,6 @@ try {
 
     $id_client = $resultClient[0]['id_cli'];
 
-    // Vérification de l'existence de la catégorie
     $reqCategorie = "SELECT * FROM categories WHERE id = :id AND id_client = :id_client";
     $resultCategorie = $connexion->execSQL($reqCategorie, ['id' => $idCategorie, 'id_client' => $id_client]);
 
@@ -36,7 +34,6 @@ try {
         throw new Exception("Catégorie introuvable.");
     }
 
-    // Suppression de la catégorie
     $reqDeleteCategorie = "DELETE FROM categories WHERE id = :id";
     $connexion->execSQL($reqDeleteCategorie, ['id' => $idCategorie]);
 
