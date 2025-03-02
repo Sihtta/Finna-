@@ -21,12 +21,10 @@ try {
     $description = $_POST['description'];
     $compte = $_POST['compte'];
 
-    // Si c'est une dépense, rendre le montant négatif
     if ($type === 'dépense') {
         $montant = -abs($montant);
     }
 
-    // Récupérer les détails de l'ancienne transaction
     $reqOldTransaction = "SELECT montant, id_compte FROM transactions WHERE id = :id";
     $oldTransaction = $connexion->execSQL($reqOldTransaction, ['id' => $transactionId]);
 
@@ -37,10 +35,8 @@ try {
     $oldMontant = floatval($oldTransaction[0]['montant']);
     $oldCompte = $oldTransaction[0]['id_compte'];
 
-    // Calculer la différence de montant
     $differenceMontant = $montant - $oldMontant;
 
-    // Mettre à jour le solde de l'ancien compte si le compte a changé
     if ($oldCompte != $compte) {
         $reqUpdateOldCompte = "UPDATE compte_bancaire SET solde = solde - :diff WHERE id_compte = :id_compte";
         $connexion->execSQL($reqUpdateOldCompte, [
@@ -54,7 +50,6 @@ try {
             'id_compte' => $compte
         ]);
     } else {
-        // Si le compte reste le même, ajuster le solde avec la différence
         $reqUpdateCompte = "UPDATE compte_bancaire SET solde = solde + :diff WHERE id_compte = :id_compte";
         $connexion->execSQL($reqUpdateCompte, [
             'diff' => $differenceMontant,
@@ -62,7 +57,6 @@ try {
         ]);
     }
 
-    // Mettre à jour la transaction
     $reqUpdate = "UPDATE transactions SET type = :type, montant = :montant, categorie = :categorie, description = :description, id_compte = :compte WHERE id = :id";
     $connexion->execSQL($reqUpdate, [
         'type' => $type,
