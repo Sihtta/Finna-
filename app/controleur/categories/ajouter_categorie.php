@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         $nomCategorie = $_POST['nom'];
 
-        // Récupérer l'id_client
+        // Récupérer l'id du client
         $reqClient = "SELECT id_cli FROM client WHERE login = :login";
         $resultClient = $connexion->execSQL($reqClient, ['login' => $login]);
 
