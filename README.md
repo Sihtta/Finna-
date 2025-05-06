@@ -4,7 +4,7 @@
 
 Ce projet a pour objectif de créer une application web simple permettant de gérer ses finances personnelles. Il offre des fonctionnalités de base telles que l'ajout et le suivi des revenus et des dépenses.
 
-Le projet est réalisé avec **HTML**, **CSS**, et **PHP** pour la logique côté serveur. Les données sont stockées dans une base de données.
+Le projet est réalisé avec **HTML**, **CSS**, et **PHP** pour la logique côté serveur. Les données sont stockées dans une base de données mysql.
 
 ## **Fonctionnalités principales ⚙️**
 
