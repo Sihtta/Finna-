@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Finna - Accueil</title>
-    <link rel="stylesheet" href="../../style/compte.css?v=1.6">
+    <link rel="stylesheet" href="../../style/compte.css">
     <link rel="icon" type="image/png" href="../../assets/images/favicon.png">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
@@ -19,6 +19,7 @@
                 </a>
                 <a href="index.php" style="text-decoration: none"> <span class="logo-text">Finna</span> </a>
             </div>
+            <button class="mobile-menu-toggle"><i class="fas fa-bars"></i></button>
             <nav class="nav-links">
                 <a href="login.view.php">Se connecter</a>
                 <a href="inscription.view.php">S'inscrire</a>
@@ -68,8 +69,17 @@
             <p>Organisez vos transactions par catégories pour mieux analyser vos dépenses.</p>
         </div>
     </div>
-    </main>
+    </div>
+    <!-- Fin des cartes -->
+    <!-- Scripts JS -->
+    <script src="../../assets/js/button.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const btn = document.querySelector('.mobile-menu-toggle');
+            const nav = document.querySelector('.nav-links');
+            if (btn && nav) btn.addEventListener('click', () => nav.classList.toggle('show'));
+        });
+    </script>
 </body>
-<script src="../../assets/js/button.js"></script>
 
 </html>

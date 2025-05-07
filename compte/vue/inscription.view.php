@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Finna - Inscription</title>
-    <link rel="stylesheet" href="../../style/compte.css?v=1.3">
+    <link rel="stylesheet" href="../../style/compte.css">
     <link rel="icon" type="image/png" href="../../assets/images/favicon.png">
 </head>
 
@@ -17,6 +17,7 @@
                 </a>
                 <a href="index.php" style="text-decoration: none"> <span class="logo-text">Finna</span> </a>
             </div>
+            <button class="mobile-menu-toggle"><i class="fas fa-bars"></i></button>
             <nav class="nav-links">
                 <a href="index.php">Accueil</a>
                 <a href="inscription.view.php">S'inscrire</a>
@@ -113,5 +114,13 @@
     </div>
 
 </body>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const btn = document.querySelector('.mobile-menu-toggle');
+        const nav = document.querySelector('.nav-links');
+        if (btn && nav) btn.addEventListener('click', () => nav.classList.toggle('show'));
+    });
+</script>
 
 </html>
