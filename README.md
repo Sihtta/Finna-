@@ -4,7 +4,7 @@
 
 Ce projet a pour objectif de créer une application web simple permettant de gérer ses finances personnelles. Il offre des fonctionnalités de base telles que l'ajout et le suivi des revenus et des dépenses.
 
-Le projet est réalisé avec **HTML**, **CSS**, et **PHP** pour la logique côté serveur. Les données sont stockées dans une base de données.
+Le projet est réalisé avec **HTML**, **CSS**, et **PHP** pour la logique côté serveur. Les données sont stockées dans une base de données mysql.
 
 ## **Fonctionnalités principales ⚙️**
 
@@ -23,10 +23,10 @@ Le projet est réalisé avec **HTML**, **CSS**, et **PHP** pour la logique côt�
 
 1. Clonez ce répertoire :
    ```bash
-   git clone https://github.com/votreutilisateur/gestion-finances.git
+   git clone https://github.com/Sihtta/Finna.git
    ```
 
-2. **Installez les dépendances** (si nécessaire pour PHP) et configurez votre serveur local.
+2. **Installez les dépendances** (nécessaire pour PHP) et configurez votre serveur local.
 3. Accédez au dossier du projet et ouvrez-le dans votre navigateur pour démarrer l'application.
 
 ---
