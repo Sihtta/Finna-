@@ -6,7 +6,7 @@ Ce projet a pour objectif de créer une application web simple permettant de gé
 
 Le projet est réalisé avec **HTML**, **CSS**, et **PHP** pour la logique côté serveur. Les données sont stockées dans une base de données mysql.
 
-## **Fonctionnalités principales :⚙️**
+## **Fonctionnalités principales ⚙️**
 
 - **Système d'authentification 💻** : Système d'authentification sécrurisé.
 - **Ajout des revenus et des dépenses 💸** : L'utilisateur peut entrer ses revenus et ses dépenses, avec des catégories définies pour chaque entrée.
